@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import tw, { styled } from 'twin.macro';
 
 import { IconMenu } from './icons';
@@ -7,7 +8,7 @@ import { IconMenu } from './icons';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function NavBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const dummyImgUrl = 'https://dummyimage.com/600x400/000/fff';
+  const navigate = useNavigate();
   return (
     <Header>
       <ButtonWrapper>
@@ -19,7 +20,7 @@ function NavBar() {
         <MenuContainer className="">
           <Menu
             onClick={() => {
-              setMobileMenuOpen(false);
+              navigate('/mypage');
             }}
           >
             MyPage

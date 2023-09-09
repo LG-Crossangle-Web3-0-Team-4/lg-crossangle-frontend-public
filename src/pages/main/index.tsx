@@ -122,7 +122,8 @@ const MainPage = () => {
 
 const Wrapper = tw.div`
  flex flex-col items-center p-80 gap-80 pt-20
- max-md:flex-center`;
+ max-md:flex-center
+`;
 
 const ConnectWrapper = tw.div`
   flex items-center gap-32 max-md:flex-col
