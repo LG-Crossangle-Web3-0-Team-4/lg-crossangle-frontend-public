@@ -46,21 +46,6 @@ const Wrapper = styled.button<LoadingProps>(({ isLoading }) => [
   `,
   css`
     min-width: 160px;
-    background: linear-gradient(
-      89.57deg,
-      #0dc5f5 -5.62%,
-      #b6f2ff 12.9%,
-      #71ddf1 20.67%,
-      #48ceff 31.64%,
-      #61d7f6 40.11%,
-      #a8e9ff 52.12%,
-      #60d2ff 59.37%,
-      #a0e2ff 67.72%,
-      #96e0ff 77.39%,
-      #a4e7ff 87.84%,
-      #5dd6f8 97.98%,
-      #28a2d8 109.11%
-    );
   `,
   isLoading && tw`text-transparent non-clickable`,
 ]);

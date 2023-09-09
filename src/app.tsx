@@ -6,6 +6,7 @@ import Footer from './components/footer';
 import { AsyncBoundary } from './hocs/hoc-error-boundary';
 
 const MainPage = lazy(() => import('./pages/main'));
+const Mypage = lazy(() => import('./pages/mypage'));
 const Web3Provider = lazy(() => import('~/hocs/hoc-web3-provider'));
 
 const RouteWrapper = tw.main`relative w-full h-full`;
@@ -18,6 +19,7 @@ const App = () => {
             <RouteWrapper>
               <Routes>
                 <Route path="/" element={<MainPage />} />
+                <Route path="/mypage" element={<Mypage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
               <Footer />
