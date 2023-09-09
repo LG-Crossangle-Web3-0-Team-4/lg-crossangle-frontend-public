@@ -28,7 +28,23 @@ const MainPage = () => {
 
   const navigate = useNavigate();
 
-  const [dropdownOpended, setDropdownOpened] = useState(false);
+  const Ref = useRef<any>();
+
+  const [uploadFile, setUploadFile] = useState<boolean>(false);
+  const [selectedFile, setSelectedFile] = useState<any | null>(null);
+
+  const FileUpload = (e: any, data: any) => {
+    e.preventDefault();
+    setUploadFile(true);
+    setSelectedFile(data.files[0]);
+  };
+
+  useEffect(() => {
+    if (!Ref) return;
+    Ref.current.addEventListener('dragover', (e: any) => e.preventDefault());
+
+    Ref.current.addEventListener('drop', (e: any) => FileUpload(e, e.dataTransfer));
+  }, []);
 
   return (
     <>
@@ -87,10 +103,16 @@ const MainPage = () => {
           <UploadBox>
             <UploadTitle>Upload Your File</UploadTitle>
 
-            <UploadDragBox>
-              <IconPlus />
-              Drag & Drop your Portfolio File
-            </UploadDragBox>
+            {selectedFile ? (
+              <div>
+                <Filename>{selectedFile ? selectedFile.name : 'No file selected'}</Filename>
+              </div>
+            ) : (
+              <UploadDragBox ref={Ref}>
+                <IconPlus />
+                Drag & Drop your Portfolio File
+              </UploadDragBox>
+            )}
           </UploadBox>
         </MainContainerThird>
       </Wrapper>
@@ -195,6 +217,10 @@ const UploadTitle = tw.div`
 const UploadDragBox = tw.div`
   flex-center flex-col items-center gap-16 bg-gray1 w-250 h-250 rounded-8
   border-dashed border-2 border-black
+`;
+
+const Filename = tw.div`
+  m-auto font-sb-20
 `;
 
 export default MainPage;
