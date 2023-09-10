@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { useNavigate } from 'react-router-dom';
 import tw, { styled } from 'twin.macro';
 
 import logoImage from '~/assets/images/logo.png';
@@ -9,9 +10,16 @@ import NavBar from './navbar';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Header() {
   const dummyImgUrl = 'https://dummyimage.com/400x400/000/fff';
+  const navigate = useNavigate();
   return (
     <Wrapper>
-      <Image src={dummyImgUrl} alt="logo" />
+      <Image
+        onClick={() => {
+          navigate('/');
+        }}
+        src={dummyImgUrl}
+        alt="logo"
+      />
       <ServiceName>ServiceName</ServiceName>
 
       <NavBar />
@@ -27,7 +35,7 @@ flex justify-center items-center p-16
 ]);
 
 const Image = tw.img`
-w-96 h-96 m-4
+w-96 h-96 m-4 clickable
 `;
 
 const ServiceName = tw.div`

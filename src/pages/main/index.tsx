@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { css } from '@emotion/react';
 import { useWeb3Modal } from '@web3modal/react';
-import { M } from 'msw/lib/glossary-de6278a9';
 import { useEffect, useRef, useState } from 'react';
-import { PieChart } from 'react-minimal-pie-chart';
 import { useNavigate } from 'react-router-dom';
 import tw, { styled } from 'twin.macro';
 import { useAccount, useContractRead } from 'wagmi';
@@ -53,7 +51,7 @@ const MainPage = () => {
         <ConnectWrapper>
           <ConnectTextWrapper>
             <ConnectText>
-              {isConnected ? truncatedAddress : 'Connect Your Wallet to get started!!'}
+              {isConnected ? truncatedAddress : '지갑을 연동하여 시작하세요!!'}
             </ConnectText>
           </ConnectTextWrapper>
           <ButtonSmall
@@ -67,22 +65,23 @@ const MainPage = () => {
             <MainContainerFirstImage src={main1} />
           </MainContainerFirstImageWrapper>
           <MainContainerFirstTextWrapper>
-            <MainContainerTitle>Service Title</MainContainerTitle>
+            <MainContainerTitle>전문가 플랫폼 인증 B2B 서비스</MainContainerTitle>
             <MainContainerDescription>
-              Service description Service description Service description Service description
-              Service description Service description Service description Service description
-              Service description
+              증빙 자료를 제출하여 인증 후에 SBT를 인증 수단으로 발행하여 증빙 자료가 인증되면, 해당
+              증빙 자료와 관련된 스마트 계약 토큰(SBT)이 발행됩니다.
+              <br />이 SBT는 해당 거래 또는 계약의 중요한 세부 정보를 포함하고 있으며, 블록체인에
+              기록됩니다.
             </MainContainerDescription>
           </MainContainerFirstTextWrapper>
         </MainContainerFirst>
 
         <MainContainerSecond>
           <MainContainerSecondTextWrapper>
-            <MainContainerTitle>Service Title</MainContainerTitle>
+            <MainContainerTitle>B2B 서비스 및 API 제공</MainContainerTitle>
             <MainContainerDescription>
-              Service description Service description Service description Service description
-              Service description Service description Service description Service description
-              Service description
+              발행된 SBT는 B2B 서비스를 통해 다른 기업 및 전문가 플랫폼과 공유됩니다.
+              <br />
+              API를 통해 다른 시스템과 통합할 수 있으며, 실시간 업데이트와 정보 공유를 지원합니다.
             </MainContainerDescription>
           </MainContainerSecondTextWrapper>
           <MainContainerSecondImageWrapper>
@@ -114,6 +113,14 @@ const MainPage = () => {
               </UploadDragBox>
             )}
           </UploadBox>
+          {selectedFile && (
+            <ButtonSmall
+              text="제출"
+              onClick={() => {
+                navigate('/mypage');
+              }}
+            />
+          )}
         </MainContainerThird>
       </Wrapper>
     </>
@@ -168,7 +175,7 @@ const MainContainerTitle = tw.div`
 `;
 
 const MainContainerDescription = tw.div`
-  m-auto w-400 font-sb-20
+  flex-center m-auto w-450 font-sb-20 break-keep
 `;
 
 const MainContainerSecond = tw.div`
@@ -188,7 +195,7 @@ const MainContainerSecondImage = tw.img`
 `;
 
 const MainContainerThird = tw.div`
-  flex items-center gap-32 
+  flex flex-col items-center gap-32 
 `;
 
 const SelectBox = tw.div`
@@ -196,7 +203,7 @@ const SelectBox = tw.div`
 `;
 
 const SelectTitle = tw.div`
-  m-auto font-sb-28
+  m-auto font-sb-28 w-300
 `;
 
 const StyledSelectBolder = tw.div`
@@ -216,7 +223,7 @@ const UploadTitle = tw.div`
 `;
 
 const UploadDragBox = tw.div`
-  flex-center flex-col items-center gap-16 bg-gray1 w-250 h-250 rounded-8
+  flex-center flex-col items-center gap-16 bg-blue w-250 h-250 rounded-8
   border-dashed border-2 border-black
 `;
 

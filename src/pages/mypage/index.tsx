@@ -1,45 +1,23 @@
 import tw, { css, styled } from 'twin.macro';
-import { ButtonSmall } from '~/components/buttons/small';
 
 import Header from '~/components/header';
 import { useConnectWallet } from '~/hooks/data/use-connect-wallet';
 
 const rows = [
   {
-    id: 1,
-    issuer: 'US Treasury 0% 00. 00. 2023',
-    cusip: 'US912797GR22',
-    maturityDate: '2023-00-00',
-    ytm: '5.28%',
-    principalAmount: '243,200.00',
-    marketValue: '242,533.96',
+    date: '2021.08.01',
+    category: 'Designer',
+    status: '승인 대기',
   },
   {
-    id: 2,
-    issuer: 'US Treasury 0% 00. 00. 2023',
-    cusip: 'US912797GR22',
-    maturityDate: '2023-00-00',
-    ytm: '5.28%',
-    principalAmount: '243,200.00',
-    marketValue: '242,533.96',
+    date: '2021.08.02',
+    category: 'Designer',
+    status: '승인 완료',
   },
   {
-    id: 3,
-    issuer: 'US Treasury 0% 00. 00. 2023',
-    cusip: 'US912797GR22',
-    maturityDate: '2023-00-00',
-    ytm: '5.28%',
-    principalAmount: '243,200.00',
-    marketValue: '242,533.96',
-  },
-  {
-    id: 4,
-    issuer: 'US Treasury 0% 00. 00. 2023',
-    cusip: 'US912797GR22',
-    maturityDate: '2023-00-00',
-    ytm: '5.28%',
-    principalAmount: '243,200.00',
-    marketValue: '242,533.96',
+    date: '2021.08.03',
+    category: 'Designer',
+    status: '승인 거절',
   },
 ];
 
@@ -49,32 +27,27 @@ const Mypage = () => {
     <>
       <Header />
       <Wrapper>
-        <MyPageTitle>MyPage</MyPageTitle>
-
         <TableWrapper>
           <OrderHeader>
-            <HeaderIssuer>Issuer</HeaderIssuer>
-            <HeaderCusip>CUSIP</HeaderCusip>
-            <HeaderMaturity>Maturity Date</HeaderMaturity>
-            <HeaderYtm>YTM</HeaderYtm>
-            <HeaderPrincipalAmount>Principal Amount</HeaderPrincipalAmount>
-            <HeaderMarketValue>Market Value</HeaderMarketValue>
+            <HeaderIssuer>발급 신청일</HeaderIssuer>
+            <HeaderCusip>카테고리</HeaderCusip>
+            <HeaderPrincipalAmount>승인 상태</HeaderPrincipalAmount>
           </OrderHeader>
           {rows.map(row => (
-            <OrderRow key={row.id}>
-              <RowIssuer>{row.issuer}</RowIssuer>
-              <RowCusip>{row.cusip}</RowCusip>
-              <RowMaturity>{row.maturityDate}</RowMaturity>
-              <RowYtm>{row.ytm}</RowYtm>
+            <OrderRow key={row.date}>
+              <RowIssuer>{row.date}</RowIssuer>
+              <RowCusip>{row.category}</RowCusip>
+
               <RowPrincipalAmount>
-                <ButtonSmall
-                  text="BUY"
+                <ButtonMyPage
+                  status={row.status}
                   onClick={() => {
-                    console.log('BUY');
+                    console.log('click');
                   }}
-                />
+                >
+                  {row.status}
+                </ButtonMyPage>
               </RowPrincipalAmount>
-              <RowMarketValue>{row.marketValue}</RowMarketValue>
             </OrderRow>
           ))}
         </TableWrapper>
@@ -84,8 +57,7 @@ const Mypage = () => {
 };
 
 const Wrapper = tw.div`
- flex flex-col items-center p-80 gap-40 pt-20
-
+ flex-center flex-col items-center p-80 gap-40 pt-20
 `;
 
 const MyPageTitle = tw.div`
@@ -93,14 +65,14 @@ const MyPageTitle = tw.div`
 `;
 
 const TableWrapper = styled.div(() => [
-  tw`flex flex-col w-full gap-20 px-24 py-20 bg-white rounded-20`,
+  tw`flex flex-col gap-20 px-24 py-20 bg-white rounded-20`,
   css`
     box-shadow: 0px 12px 32px 0px #3358ff14;
   `,
 ]);
 
 const OrderHeader = tw.div`
-  w-full flex gap-8
+   m-auto flex gap-8
 `;
 
 const HeaderIssuer = tw.div`
@@ -109,40 +81,36 @@ const HeaderIssuer = tw.div`
 const HeaderCusip = tw.div`
     font-r-14 w-140 text-gray4 text-center
 `;
-const HeaderMaturity = tw.div`
-    font-r-14 w-100 text-gray4 text-center
-`;
-const HeaderYtm = tw.div`
-    font-r-14 w-80 text-gray4 text-center
-`;
+
 const HeaderPrincipalAmount = tw.div`
-    font-r-14 w-161 text-gray4 text-center flex-center gap-4
-`;
-const HeaderMarketValue = tw.div`
     font-r-14 w-161 text-gray4 text-center flex-center gap-4
 `;
 
 const OrderRow = tw.div`
-  w-full flex gap-8
+  m-auto flex gap-8
 `;
 
 const RowIssuer = tw.div`
-  font-sb-14 w-230 text-black text-center
+  flex-center font-sb-14 w-230 text-black text-center
 `;
 const RowCusip = tw.div`
-  font-r-14 w-140 text-black text-center
+  flex-center font-r-14 w-140 text-black text-center
 `;
-const RowMaturity = tw.div`
-  font-r-14 w-100 text-black text-center
-`;
-const RowYtm = tw.div`
-  font-r-14 w-80 text-black text-center
-`;
+
 const RowPrincipalAmount = tw.div`
-  font-r-14 w-161 text-black text-center
+  font-r-14 w-161 text-black text-center flex-center
 `;
-const RowMarketValue = tw.div`
-  font-r-14 w-161 text-black text-center 
-`;
+
+interface ButtonMyPageProps {
+  status: string;
+}
+const ButtonMyPage = styled.button(({ status }: ButtonMyPageProps) => [
+  tw` flex-center w-100 h-30 bg-blue rounded-10 text-white text-center font-sb-14
+  
+  `,
+  status === '승인 대기' && tw`bg-blue`,
+  status === '승인 완료' && tw`bg-green-300 clickable`,
+  status === '승인 거절' && tw`bg-red-300`,
+]);
 
 export default Mypage;

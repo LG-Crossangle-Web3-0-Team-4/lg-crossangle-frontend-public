@@ -41,7 +41,7 @@ interface LoadingProps {
 const Wrapper = styled.button<LoadingProps>(({ isLoading }) => [
   tw`
     w-200 h-64 px-16 py-6 flex-center relative
-    rounded-8 bg-gray4 clickable
+    rounded-8 bg-blue clickable
     disabled:(bg-gray2 non-clickable hover:(bg-gray2))
   `,
   css`
