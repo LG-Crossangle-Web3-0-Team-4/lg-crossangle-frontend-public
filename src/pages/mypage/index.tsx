@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import tw, { css, styled } from 'twin.macro';
+import { useAccount, useContractWrite, usePrepareContractWrite } from 'wagmi';
 
+import { Tokens_ABI } from '~/abi/tokens';
 import Header from '~/components/header';
 import { useConnectWallet } from '~/hooks/data/use-connect-wallet';
 
@@ -23,6 +26,24 @@ const rows = [
 
 const Mypage = () => {
   const { isConnected, truncatedAddress, disconnect } = useConnectWallet();
+
+  // const mintSbt = ()=>{
+
+  //   const {address : walletAddress} = useAccount();
+
+  //   const {config} = usePrepareContractWrite({
+  //     address : "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  //     abi : Tokens_ABI,
+  //     functionName : "mint",
+  //     chainId : 31337,
+  //     account : walletAddress,
+  //     args : [walletAddress, 1000],
+  //   });
+
+  //   const {data, writeAsync} =useContractWrite(config);
+
+  // }
+
   return (
     <>
       <Header />

@@ -4,7 +4,7 @@ import { useWeb3Modal } from '@web3modal/react';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import tw, { styled } from 'twin.macro';
-import { useAccount, useContractRead } from 'wagmi';
+import { useAccount, useContractWrite } from 'wagmi';
 
 import { Tokens_ABI } from '~/abi/tokens';
 import { useGetUsersQuery } from '~/api/api-server/users/users-get';
